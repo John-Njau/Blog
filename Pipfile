@@ -5,6 +5,13 @@ name = "pypi"
 
 [packages]
 python-dotenv = "*"
+flask-migrate = "*"
+flask = "*"
+flask-login = "*"
+flask-wtf = "*"
+wtforms = "*"
+wtf = "*"
+werkzeug = "*"
 
 [dev-packages]
 
