@@ -1,5 +1,5 @@
 from flask import Blueprint
 
-auth = Blueprint('main', __name__)
+auth = Blueprint('auth', __name__)
 
 from . import views,forms
