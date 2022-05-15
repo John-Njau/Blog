@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block styles %} {{super()}}
+<link href="{{url_for('static',filename='css/auth.css')}}" rel="stylesheet" />
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div>
+        <a href="{{url_for('main.index')}}">Home</a>
+    </div>
+    <div id="signuptable">
+        <div class="text-center">
+        <p><h1>Hello!</h1>Fill this form to create an account.</p>
+        </div>
+        <div class="bg-secondary">
+            {{wtf.quick_form(signupform)}}
+            <p> Already have an account?
+                <a href="{{url_for('auth.login')}}">Log in</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
