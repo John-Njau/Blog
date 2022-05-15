@@ -1,0 +1,35 @@
+h1{
+    font-size: 1.5em;
+}
+
+#contact{
+    /* width:50%; */
+    margin:auto auto;
+}
+
+.bg-dark{
+    background-color: #343a40;
+    height:100vh;
+    /* margin-left: 15px; */
+}
+
+.bg-darrk{
+    background-color: #343a40;
+    height:100vh;
+}
+
+.bg-light{
+    background-color: #920992;
+    height:100vh
+}
+
+#subscribe{
+    border: 1px solid #000;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    background-color: hsl(209, 88%, 48%);
+    font-size: 1.5em;
+    border-radius: 5px;
+    margin: 1rem;
+}

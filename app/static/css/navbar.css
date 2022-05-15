@@ -1,5 +1,9 @@
 img{
-    outline: olive;
+    /* border: 4px solid rgb(23, 36, 219); */
+    border-radius: 50%;
+    margin-top: 5px;
+    /* margin-bottom: 25px; */
+    padding: 15px;
 }
 .navbar-brand{
     font-size: 1.8em;
@@ -21,6 +25,7 @@ img{
     /* border: 1px solid #000; */
     border-radius: 5px;
     padding: 10px;
+    text-decoration: none;
 }
 
 .buttons > a:hover{
@@ -45,30 +50,37 @@ img{
     padding: 20px;
     /* margin-left: 20px; */
     font-size: 1.5em;
-    font-weight: bold;
-    border-radius: 0.5rem;
+    /* font-weight: bold; */
+    /* border-radius: 0.5rem; */
+    
 }
 #navbarBasic:hover{
     background-color: rgb(140, 165, 165);
+    /* background-color:olive; */
     /* display:flex; */
-    text-align: center;
+    /* text-align: center; */
     /* align-items: center; */
     /* padding: 20px; */
     /* margin-left: 20px; */
     /* font-size: 1.5em; */
-    font-weight: bold;
+    /* font-weight: bold; */
     border-radius: 10px;
+    margin-left: 65px;
 }
 
 .navbar-start > a{
-    border: 1px solid #ccc;
-    border-radius: 10px;
     box-shadow: 0 0 0.5px #000;
     text-align: center;
     margin: 0.5rem 1.0rem ; 
     cursor: pointer;
-    padding: 0.2em
+    padding: 0.2em;
+    text-decoration: none;
+    color: #000;
 }
+
 .navbar-start > a:hover{
     color: #fff;
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+    background-color: #3e3e50;
 }
