@@ -6,9 +6,9 @@
 {% block body %} {% block navbar %} {% include
 "navbar.html" %} {% endblock %} {% block content %}
 <div class="container-fluid">
-  <div class="text-center bg-warning  p-3 m-3">
+  <div class="text-center text-light p-3 m-3" style="background-color:rgb(255, 255, 255)">
     <!-- quotes code -->
-    <h3 class="text-danger">Code Quotes</h3>
+    <h3 class="text-dark">Random Code Quotes</h3>
     <div class="text-dark">
       <p>{{quotes.quote}}</p>
       <small><strong>~{{quotes.author}}~</strong></small>
@@ -28,17 +28,21 @@
       </div>
       {% if current_user.is_authenticated %}
       <div class="col-md-8 text-center">
-        <h2>Blogs</h2>
+        <h2 class="text-center text-primary">Blogs</h2>
         <div class="bg-light">
           {{macro.display_blogs(blogs, commentform, current_user)}}
         </div>
       </div>
       {% else %}
-      <div class="container">
+      <div class="container-fluid text-center" style="background-color: #39115a">
         <h2 class="text-primary">Blogs</h2>
-        <div class="col-md-10 bg-light text-center m-3 p-3">
+        <div class="row">
+          <div class="col-md-2"></div>
+        </div>
+        <div class="col-md-18 bg-light text-center m-3 p-3">
           {{macro.display_blogs(blogs, commentform, current_user)}}
         </div>
+        <div class="col-md-2"></div>
       </div>
       {% endif %}
       {% if current_user.is_authenticated %}
@@ -60,7 +64,7 @@
   <div></div>
 
   {% else %}
-  <div class="text-center container">
+  <div class="text-center container-fluid">
     <div class="d-flex text-light text-center justify-content-center p-3" id="subscribe"
       style="background-color: hsl(273, 68%, 21%);">
       Subscribe to our monthly newsletter
@@ -71,7 +75,8 @@
 
   <!-- contact section -->
   <section>
-    <div class="container text-center" id="contact">
+    <div class="container-fluid text-center text-light p-5 m-2" id="contact"
+      style="background-color: hsl(273, 68%, 21%)">
       <h2 class="p-3 m-3 text-center">CONTACT US</h2>
       <h4 class="text-secondary">Feel Free to get in touch anytime.</h4>
       <form action="https://formspree.io/f/mlezleoe" method="POST" class="form d-flex justify-content-center g-5"
