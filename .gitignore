@@ -6,4 +6,3 @@ __pycache__
 env/
 *.sh
 testcode.html
-runtime.txt
