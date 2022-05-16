@@ -27,7 +27,6 @@ Jinja2==2.11.3
 Mako==1.2.0
 MarkupSafe==2.0.1
 psycopg2-binary==2.9.3
-requests==2.22.0
 SQLAlchemy==1.4.36
 sqlparse==0.4.2
 visitor==0.1.3
