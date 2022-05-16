@@ -1,6 +1,5 @@
 import requests
 
-
 def randomquote():
     quotes = requests.get('http://quotes.stormconsultancy.co.uk/random.json')
     if quotes.status_code == 200:
