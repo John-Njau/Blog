@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField,ValidationError
 from wtforms.validators import DataRequired, Email, EqualTo
 
-from ..models import Users
+from ..models import User
 
 class SignupForm(FlaskForm):
     email = StringField("Enter Your Email Address", render_kw={'placeholder': 'Email'},
@@ -16,11 +16,11 @@ class SignupForm(FlaskForm):
     
     # verify log in details
     def validate_email(self, data_field):
-        if Users.query.filter_by(email= data_field.data).first():
+        if User.query.filter_by(email= data_field.data).first():
             raise ValidationError("Email Already Registered.")
         
     def validate_username(self, data_field):
-        if Users.query.filter_by(username= data_field.data).first():
+        if User.query.filter_by(username= data_field.data).first():
             raise ValidationError("Username Taken. Try Another one.")
 
 

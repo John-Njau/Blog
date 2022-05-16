@@ -1,20 +1,16 @@
 from flask import render_template,request, redirect, url_for, flash, abort
 from . import auth
 from .forms import SignupForm, LoginForm
-from ..models import Users
+from ..models import User
 from .. import db
 from ..email import mail_message
 from flask_login import login_user, logout_user, login_required, current_user
-
-# @auth.before_first_request
-# def create_tables():
-#     db.create_all()
 
 @auth.route('/signup', methods=['GET', 'POST'])
 def signup():
     form = SignupForm()
     if form.validate_on_submit():
-        user = Users(email=form.email.data, username=form.username.data, password=form.password.data)
+        user = User(email=form.email.data, username=form.username.data, password=form.password.data)
         db.session.add(user)
         db.session.commit()
         
@@ -30,7 +26,7 @@ def login():
     title="Login"
     form = LoginForm()
     if form.validate_on_submit():
-        user = Users.query.filter_by(username=form.username.data).first()
+        user = User.query.filter_by(username=form.username.data).first()
         if user is not None and user.verify_password(form.password.data):
             login_user(user, form.rememberMe.data)
             return redirect(url_for('main.index'))
