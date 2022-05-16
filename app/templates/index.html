@@ -1,1 +1,103 @@
-<h1>Well </h1>
+{% extends "base.html" %}
+{% import "blog_macro.html" as macro %}
+{% block styles %} {{super()}}
+<link href="{{url_for('static',filename='css/index.css')}}" rel="stylesheet" />
+{% endblock %}
+{% block body %} {% block navbar %} {% include
+"navbar.html" %} {% endblock %} {% block content %}
+<div class="container-fluid">
+  <div class="text-center bg-warning  p-3 m-3">
+    <!-- quotes code -->
+    <h3 class="text-danger">Code Quotes</h3>
+    <div class="text-dark">
+      <p>{{quotes.quote}}</p>
+      <small><strong>~{{quotes.author}}~</strong></small>
+    </div>
+  </div>
+  <!-- to display blog about me etc -->
+  <section class="text-center m-3">
+    <div class="row">
+      {% if current_user.is_authenticated %}
+      <div class="col-md-2 bg-secondary">
+        <div class="">
+          <a class="btn btn-light m-2" href="{{url_for('main.profile', user_id=current_user.id)}}">My Profile</a> <br>
+          <a class="btn btn-light m-2" href="{{url_for('main.newblog', user_id=current_user.id)}}">New Blog</a> <br>
+          <a class="btn btn-light m-2 disabled" href="{{url_for('main.blogs', user_id=current_user.id)}}">My Blogs</a>
+        </div>
+        {% endif %}
+      </div>
+      {% if current_user.is_authenticated %}
+      <div class="col-md-8 text-center">
+        <h2>Blogs</h2>
+        <div class="bg-light">
+          {{macro.display_blogs(blogs, commentform, current_user)}}
+        </div>
+      </div>
+      {% else %}
+      <div class="container">
+        <h2 class="text-primary">Blogs</h2>
+        <div class="col-md-10 bg-light text-center m-3 p-3">
+          {{macro.display_blogs(blogs, commentform, current_user)}}
+        </div>
+      </div>
+      {% endif %}
+      {% if current_user.is_authenticated %}
+      <div class="col-md-2 bg-primary ">
+        <h2 class="text-light">Recent blogs</h2>
+        <div class="form-group">
+          <label for=""></label>
+          <input type="search" name="" id="" class="form-control" placeholder="search blog">
+
+        </div>
+        {{macro.display_latestblogs(recent_blogs, current_user)}}
+
+      </div>
+      {% endif %}
+    </div>
+  </section>
+  <!-- subscribe -->
+  {% if current_user.is_authenticated %}
+  <div></div>
+
+  {% else %}
+  <div class="text-center container">
+    <div class="d-flex text-light text-center justify-content-center p-3" id="subscribe"
+      style="background-color: hsl(273, 68%, 21%);">
+      Subscribe to our monthly newsletter
+      <input type="text" placeholder="Email...">
+      <input type="button" class="btn btn-primary" value="Subscribe">
+    </div>
+  </div>
+
+  <!-- contact section -->
+  <section>
+    <div class="container text-center" id="contact">
+      <h2 class="p-3 m-3 text-center">CONTACT US</h2>
+      <h4 class="text-secondary">Feel Free to get in touch anytime.</h4>
+      <form action="https://formspree.io/f/mlezleoe" method="POST" class="form d-flex justify-content-center g-5"
+        id="contactForm" name="contactForm">
+        <div class="m-4">
+          <label for="name"></label>
+          <input type="text" class="bg-transparent text-white mb-3" name="name" placeholder="Name &#42" required /><br>
+          <label for="email"></label> <br>
+          <input type="email" class="bg-transparent text-white mb-3" name="email" id="email" placeholder="Email &#42"
+            required /> <br>
+          <label for="subject"></label> <br>
+          <input type="subject" class="bg-transparent text-white mb-3" name="subject" id="subject"
+            placeholder="Subject &#42" required />
+        </div>
+        <div>
+          <label for="message"></label>
+          <textarea rows="10" cols="50" class="bg-transparent text-white container" id="comment" name="message"
+            placeholder="Message &#42"></textarea>
+          <br />
+          <input type="submit" value="Send" id="sendBtn" class="btn btn-primary m-3 text-light" />
+        </div>
+
+      </form>
+    </div>
+  </section>
+  {% endif %}
+</div>
+
+{% endblock %} {% endblock %}

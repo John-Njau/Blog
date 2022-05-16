@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block content%}
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            <a href="{{url_for('main.index')}}">comment</a>
+        </div>
+        <div class="col-md-8">
+            <h3>Comment</h3>
+            comment on blog {{blog_id}}
+            {{wtf.quick_form(commentform)}}
+        </div>
+        <div class="col-md-2">
+            <a href="{{url_for('main.profile')}}">profile</a>
+        </div>
+    </div>
+  
+<div>
+    
+</div>
+{% endblock %}

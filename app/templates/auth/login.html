@@ -4,26 +4,39 @@
 <link href="{{url_for('static',filename='css/auth.css')}}" rel="stylesheet" />
 {% endblock %}
 {% block content %}
-
 <div class="container">
-    <div>
-        <a href="{{url_for('main.index')}}">Home</a>
-    </div>
-    <div id="logintable">
-        <div class="text-center">
-        <p><h1>Hello!</h1>Login to your account</p>
-        </div>
-        {% for message in get_flashed_messages() %}
-            <div class="alert alert-danger">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                {{message}}
+    <div class="row">
+        <div class="col-md-3">
+            <div>
+                <a href="{{url_for('main.index')}}"  class="btn btn-light">Home</a>
             </div>
-        {% endfor %}
-        <div class="bg-secondary">
-            {{wtf.quick_form(loginform)}}
-            <p> Don't have an Account?
-                <a href="{{url_for('auth.signup')}}">Create one here</a></p>
         </div>
+        <div class="col-md-6">
+            <div id="logintable">
+                <div class="text-center">
+                    <p>
+                        <h1>Hello!</h1>Login to your account
+                    </p>
+                </div>
+                {% for message in get_flashed_messages() %}
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    {{message}}
+                </div>
+                {% endfor %}
+                <div class="bg-dark p-5 text-light">
+                    {{wtf.quick_form(loginform)}}
+                    <p class="help-block text-center"> <small><strong>Don't have an account?
+                                <a href="{{url_for('auth.signup')}}">Sign up</a>
+                            </strong></small>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+        </div>
+
+
     </div>
-</div>
-{% endblock %}
+    {% endblock %}

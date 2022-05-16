@@ -1,0 +1,16 @@
+<!-- blog macro -->
+{% import 'bootstrap/wtf.html' as wtf %}
+{% import 'blog_macro.html' as macro%}
+{% block content %}
+<div class="form">
+  <div class="container pt-5">
+    <div class="row">
+      {% if blogs %}
+      {{ macro.display_blogs(blogs, commentform, user) }}
+      {% else %}
+      <p>No blogs found</p>
+      {% endif %}
+      </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block styles %} {{super()}}
+<link href="{{url_for('static',filename='css/macro.css')}}" rel="stylesheet" />
+{% endblock %}
+{% macro display_blogs(blogs,
+commentform, user) %}
+<div class="accordion" >
+  {% for blog in blogs %}
+  <div class="card my-4 custom-bg-2 p-2" id="blogsaccordion">
+    
+    <div class="card-header" id="{{blog.id}}">
+      <div class="card-title">
+        <h2 class="blog-post-title">{{blog.title}}</h2>
+      </div>
+      <hr />
+      <div class="" data-toggle="collapse" data-target="#blog{{blog.id}}">
+        <span class="">{{blog.blog}}</span>
+        <div class="card-body pt-1">
+          <p class="float-left">
+            <small class="text-muted">By:</small><strong class="badge badge-dark">{{blog.user.username}}</strong>
+          </p>
+          <p class="float-right">
+            <small>
+              <strong>{{blog.blog_created.strftime("%b, %d, %Y")}}</strong>
+            </small>
+          </p>
+          <br />
+        </div>
+      </div>
+    </div>
+    <div>
+      <p class="badge">
+        {{blog.comments | length}}
+        <i class="fas text-primary fa-comment-dots fa-2x"></i>
+        </a>
+      </p>
+      <p class="ml-4 badge {% if user.id != blog.author_id %}like {% endif %}" id="like likes{{blog.id}}">
+        <span class="text-success count-likes{{blog.id}}">
+         
+        </span>
+        <a href="/like/{{blog.id}}">
+        <i  class="fas fa-2x fa-heart like-fa p-1 text-danger"> </i>
+        {{blog.likes.count(0)}}
+        {{blog.likes|length}}
+        </a>
+      </p>
+      <p class="ml-4 badge {% if user.id != blog.author_id %}like {% endif %}"
+        id="dislike dislikes{{blog.id}}">
+        <span class="text-danger count-dislikes{{blog.id}}">
+        <a href="/dislike/{{blog.id}}">
+        <i class="fas fa-2x fa-thumbs-down text-danger like-fa p-1"> </i>
+        {{blog.dislikes.count(0)}}
+        {{blog.dislikes|length}}
+        </a>
+      </span>
+      </p>
+    </div>
+    <div id="blog{{blog.id}}" class="collapse" data-parent="#blogAccordion">
+      {% if user.is_authenticated and user.id != blog.author_id %}
+      <form method="POST" class="commentform" id="commentForm{{blog.id}}">
+        {{commentform.csrf_token}}
+        <div class="form-group">
+          {{ commentform.commentbody(class="custom-input") }}
+        </div>
+        <button type="submit" id="commentbtn">
+          Comment
+        </button>
+      </form>
+      {% endif %}
+      <h6 class="mt-4 pl-3 custom-color">{{blog.comments |length}} comments</h6>
+      <div class="custom-bg-2 comment-section{{blog.id}}">
+        {% for comment in blog.comments %}
+        <p class="pl-3">
+          <span class="badge badge-secondary custom-color">By@{{comment.user.username}}</span>
+          <small>{{comment.comment}}</small>
+        </p>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  {% endfor %}
+</div>
+{%endmacro%}
+
+{% macro display_latestblogs(blogs, user) %}
+<div class="latest-blogs mt-5">
+  {% for blog in blogs %}
+  <div class="card custom-bg-2 my-2 bg-light">
+    <div class="card-title">
+      <h4>{{blog.title}}</h4>
+    </div>
+    <div class="card-header">
+      <p class="">{{blog.blog | truncate(22)}}</p>
+      <div class="card-footer pl-0">
+        <div class="text-left">
+          <p class="pl-2 mb-1 badge badge-dark">By:@{{blog.user.username}}</p>
+          <p class="small mb-1 float-right">
+            <strong>{{blog.blog_created.strftime("%b %d, %Y")}}</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% block footer %} {% endblock %} {% endmacro %}
