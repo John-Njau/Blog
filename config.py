@@ -5,8 +5,8 @@ class Config:
     # SECRET_KEY=os.environ.get('SECRET_KEY')
     SECRET_KEY = 'tvybuinocdwmls'
     UPLOADED_PHOTOS_DEST = 'app/static/photos'
-    
-    #email configurations
+
+    # email configurations
     MAIL_SERVER = 'smtp.googlemail.com'
     MAIL_PORT = 587
     MAIL_USE_TLS = True
@@ -15,8 +15,9 @@ class Config:
 
 
 class DevConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:blog101db@localhost/blogdb'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:mock@localhost/blogdb'
     DEBUG = True
+
 
 class ProdConfig(Config):
     uri = os.getenv('DATABASE_URL')
@@ -24,7 +25,6 @@ class ProdConfig(Config):
         uri = uri.replace('postgres://', 'postgresql://', 1)
 
     SQLALCHEMY_DATABASE_URI = uri
-    
 
 
 class TestConfig(Config):

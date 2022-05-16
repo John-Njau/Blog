@@ -3,3 +3,7 @@
 *.pyc
 __pycache__
 .idea/
+env/
+*.sh
+testcode.html
+runtime.txt
