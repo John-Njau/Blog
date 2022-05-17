@@ -65,6 +65,7 @@ class Blog(db.Model, Crud):
     dislikes = db.relationship('Dislikes', backref='dislike', lazy=True)
     author_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     blog_created = db.Column(db.DateTime, default=datetime.now())
+    
     blog_updated = db.Column(db.DateTime, onupdate=datetime.now())
 
     def delete(self):
