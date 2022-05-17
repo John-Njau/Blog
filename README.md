@@ -51,7 +51,7 @@ To Run this app in your machine, you need to:
 
 This is the live link to the site
 
-<a>https://thejblog.herokuapp.com/</a>
+<a>https://thej1blog.herokuapp.com//</a>
 
 # Technologies Used
 
