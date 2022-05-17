@@ -59,7 +59,6 @@ class Blog(db.Model, Crud):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255), nullable=False)
     blog = db.Column(db.String(1500), nullable=False)
-    blog_pic = db.Column(db.String(255))
     comments = db.relationship('Comment', backref='comments', lazy=True)
     likes = db.relationship('Likes', backref='like', lazy=True)
     dislikes = db.relationship('Dislikes', backref='dislike', lazy=True)
